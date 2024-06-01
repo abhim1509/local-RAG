@@ -22,3 +22,15 @@ export const generateIndex = async () => {
     storageContext,
   });
 };
+
+export const loadIndex = async () => {
+  const storageContext = await storageContextFromDefaults({
+    persistDir: process.env.STORAGE_CACHE_DIR,
+  });
+
+  const index = await VectorStoreIndex.init({
+    storageContext: storageContext,
+  });
+  // console.log(index);
+  return index;
+};
