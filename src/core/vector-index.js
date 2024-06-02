@@ -16,8 +16,6 @@ export const loadData = async () => {
 };
 
 export const generateIndex = async () => {
-  console.log(process.env.STORAGE_CACHE_DIR);
-
   const storageContext = await storageContextFromDefaults({
     persistDir: process.env.STORAGE_CACHE_DIR,
   });
