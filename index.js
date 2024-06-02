@@ -1,19 +1,9 @@
-import express from "express";
-import { chatRequest } from "./chat.controller.js";
+import { setEngine } from "./src/initialise.js";
+import { startServer } from "./src/server.js";
 
-const app = express();
-const port = parseInt(process.env.PORT || "8000");
-
-app.use(express.json());
-
-app.use(express.text());
-
-app.get("/api/", (req, res) => {
-  res.send("LlamaIndex Express Server");
-});
-
-app.post("/api/chat", chatRequest);
-
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+try {
+  setEngine();
+  startServer();
+} catch (error) {
+  console.log(JSON.stringify(error));
+}

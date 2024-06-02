@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "time node index.js",
-    "generate": "node generate-index.js"
+    "dev": "node index.js",
+    "generate": "node src/core/vector-index.js"
   },
   "author": "",
   "license": "ISC",

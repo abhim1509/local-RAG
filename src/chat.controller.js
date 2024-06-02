@@ -1,5 +1,5 @@
-import { getChatEngine } from "./chat.js";
-import { pipeline } from "node:stream/promises";
+import { getChatEngine } from "./core/engine.js";
+import { timerStart, timerEnd } from "./util.js";
 export const chatRequest = async (req, res) => {
   try {
     const { messages } = req.body;
@@ -12,7 +12,7 @@ export const chatRequest = async (req, res) => {
     let engine = await getChatEngine();
     // console.log(engine);
     const userMessage = messages.pop();
-
+    const start = timerStart("chat engine");
     const response = await engine.chat({
       message: userMessage.content,
       // chatHistory: userMessage.content,
@@ -21,6 +21,7 @@ export const chatRequest = async (req, res) => {
     for await (const message of response) {
       process.stdout.write(message.response);
     }
+    timerEnd("chat engine", start);
     return res.status(200).json({
       result: response.response,
     });

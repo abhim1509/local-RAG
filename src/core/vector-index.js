@@ -3,8 +3,12 @@ import {
   VectorStoreIndex,
   storageContextFromDefaults,
   SimpleDirectoryReader,
+  Settings,
 } from "llamaindex";
+import { getEmbeddingModel, setEmbeddingModel } from "./settings.js";
 
+setEmbeddingModel();
+Settings.embedModel = getEmbeddingModel();
 export const loadData = async () => {
   return await new SimpleDirectoryReader().loadData({
     directoryPath: process.env.KNOWLEDGE_SOURCE,
@@ -12,6 +16,8 @@ export const loadData = async () => {
 };
 
 export const generateIndex = async () => {
+  console.log(process.env.STORAGE_CACHE_DIR);
+
   const storageContext = await storageContextFromDefaults({
     persistDir: process.env.STORAGE_CACHE_DIR,
   });
@@ -23,14 +29,4 @@ export const generateIndex = async () => {
   });
 };
 
-export const loadIndex = async () => {
-  const storageContext = await storageContextFromDefaults({
-    persistDir: process.env.STORAGE_CACHE_DIR,
-  });
-
-  const index = await VectorStoreIndex.init({
-    storageContext: storageContext,
-  });
-  // console.log(index);
-  return index;
-};
+generateIndex();
