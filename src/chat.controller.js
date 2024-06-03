@@ -10,7 +10,6 @@ export const chatRequest = async (req, res) => {
     }
 
     let engine = await getChatEngine();
-    // console.log(engine);
     const userMessage = messages.pop();
     const start = timerStart("chat engine");
     const response = await engine.chat({

@@ -1,13 +1,21 @@
 import "dotenv/config";
 import { Settings, ContextChatEngine } from "llamaindex";
 import { loadIndex } from "./loading.js";
-import { getLLMModel, getEmbeddingModel } from "./settings.js";
+import {
+  getLLMModel,
+  getEmbeddingModel,
+  setEmbeddingModel,
+  setLLMModel,
+} from "./settings.js";
 
 let chatEngine;
-Settings.llm = getLLMModel();
-Settings.embedModel = getEmbeddingModel();
 
 export const setChatEngine = async () => {
+  setLLMModel();
+  setEmbeddingModel();
+  Settings.llm = getLLMModel();
+  Settings.embedModel = getEmbeddingModel();
+
   const index = await loadIndex();
   const customQaPrompt = function ({ context = "", query = "" }) {
     return `

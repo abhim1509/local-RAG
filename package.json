@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "pm2 start index.js",
     "generate": "node src/core/vector-index.js"
   },
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "llamaindex": "^0.3.14"
+    "llamaindex": "^0.3.14",
+    "pm2": "^5.4.0"
   }
 }

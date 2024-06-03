@@ -5,5 +5,5 @@ export const timerStart = (entity) => {
 
 export const timerEnd = (entity, startDate) => {
   console.log("Loaded" + entity);
-  console.log((new Date() - startDate) * 0.006);
+  console.log((new Date().getTime() - startDate.getTime()) / 1000);
 };
