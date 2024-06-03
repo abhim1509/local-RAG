@@ -17,7 +17,3 @@ cURL request:
 curl --location 'http://localhost:8001/api/chat' \
 --header 'Content-Type: application/json' \
 --data '{"messages": [{"content":"List some FAQs?"}]}'
-
-11-24
-40.9-52.766
-50-52
